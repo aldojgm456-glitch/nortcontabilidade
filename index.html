@@ -7,7 +7,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root {
   --bg: #0B1220;
@@ -21,8 +21,8 @@
   --on-accent: #0B1220;
   --signal: #7B6CFF;
   --signal-text: #A49BFF;
-  --head: 'Oswald', 'Arial Narrow', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --body: 'Roboto', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --head: 'Sora', 'Avenir Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --body: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --ui: var(--body);
   --pad: clamp(20px, 5vw, 64px);
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -70,8 +70,8 @@ strong { font-weight: 600; }
 .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-block: clamp(48px, 9vw, 120px) clamp(100px, 11vw, 150px); overflow: hidden; }
 #net { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero .wrap { position: relative; }
-.hero h1 { font-size: clamp(52px, 11.5vw, 148px); font-weight: 700; line-height: .98; letter-spacing: .005em; text-transform: uppercase; }
-.hero .sub { font-family: var(--ui); font-weight: 400; font-size: clamp(16px, 1.9vw, 22px); line-height: 1.6; letter-spacing: .18em; text-transform: uppercase; margin-top: clamp(20px, 3vw, 36px); max-width: 48ch; }
+.hero h1 { font-size: clamp(46px, 9vw, 124px); font-weight: 800; line-height: .98; letter-spacing: -.035em; }
+.hero .sub { font-family: var(--head); font-weight: 500; font-size: clamp(19px, 2.2vw, 28px); line-height: 1.3; letter-spacing: -.01em; margin-top: clamp(20px, 3vw, 36px); max-width: 48ch; }
 .hero .tagline { position: relative; margin-top: clamp(28px, 5vw, 56px); padding-top: 20px; font-size: clamp(20px, 2.2vw, 26px); max-width: 34ch; }
 .hero .tagline::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent); transform-origin: left; }
 .js .hero .tagline::before { transform: scaleX(0); transition: transform 1.3s var(--ease) 1s; }
@@ -86,13 +86,13 @@ strong { font-weight: 600; }
 /* ---------- Seções ---------- */
 .sec { padding-block: clamp(72px, 12vw, 150px); }
 .sec + .sec { border-top: 1px solid var(--line); }
-h2 { font-size: clamp(30px, 4.3vw, 54px); font-weight: 600; line-height: 1.12; letter-spacing: .005em; text-transform: uppercase; max-width: 24ch; }
+h2 { font-size: clamp(26px, 3.3vw, 42px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; max-width: 24ch; }
 .lead { font-size: clamp(20px, 2vw, 23px); max-width: 44ch; margin-top: 22px; }
 
 .intro-grid { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.6fr); gap: clamp(28px, 6vw, 88px); align-items: start; }
 .intro-head h2 { max-width: 12ch; }
 .intro-bar { display: block; width: 56px; height: 4px; border-radius: 4px; background: var(--accent); margin-top: 22px; }
-.intro-lead { font-family: var(--head); font-weight: 500; font-size: clamp(24px, 3vw, 38px); line-height: 1.25; letter-spacing: 0; max-width: 26ch; }
+.intro-lead { font-family: var(--head); font-weight: 600; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.25; letter-spacing: -.02em; max-width: 26ch; }
 .intro-text { margin-top: 28px; max-width: 52ch; font-size: clamp(18px, 1.7vw, 21px); line-height: 1.65; }
 .intro-end { margin-top: 28px; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); font-family: var(--head); font-weight: 600; font-size: clamp(18px, 1.9vw, 23px); line-height: 1.35; max-width: 40ch; }
 .kw { font-weight: 700; color: var(--accent); background-image: linear-gradient(var(--accent), var(--accent)); background-repeat: no-repeat; background-position: 0 100%; background-size: 0 2px; padding-bottom: 1px; transition: background-size .8s var(--ease); transition-delay: calc(var(--k, 0) * 140ms + 500ms); }
@@ -552,7 +552,7 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
 .js .cico .star { opacity: 0; transform: scale(0) rotate(-90deg); transition: transform .8s var(--ease) 1.5s, opacity .4s ease 1.5s; }
 .js .case.in .star { opacity: 1; transform: none; animation: bob 2.4s ease-in-out 2.4s infinite; }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-.pull { margin-top: 44px; font-family: var(--ui); font-weight: 600; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.25; letter-spacing: -.01em; max-width: 32ch; }
+.pull { margin-top: 44px; font-family: var(--head); font-weight: 600; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.25; letter-spacing: -.01em; max-width: 32ch; }
 
 /* P&D */
 .pd-sub { font-family: var(--ui); font-weight: 500; font-size: clamp(20px, 2.4vw, 28px); margin-top: 18px; color: var(--muted); }
@@ -605,6 +605,74 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
 .sec h2::before { content: ""; display: block; width: 48px; height: 2px; background: var(--accent); margin-bottom: 22px; }
 .intro-head h2::before { display: none; }
 ::selection { background: var(--accent); color: var(--on-accent); }
+
+/* ---------- Telas separadas ---------- */
+:root { --gap: clamp(8px, 1vw, 14px); --nav-space: 84px; }
+html { scroll-padding-top: var(--gap); }
+body { background: #060A14; padding-top: var(--gap); }
+.hero, .sec, .eco { margin: 0 var(--gap) var(--gap); background-color: var(--bg); border: 1px solid var(--line); border-radius: clamp(18px, 2vw, 28px); }
+.sec + .sec { border-top: 1px solid var(--line); }
+.hero { min-height: calc(100svh - 2 * var(--gap)); }
+.sec { min-height: calc(100svh - 2 * var(--gap)); display: flex; flex-direction: column; justify-content: center; padding-block: clamp(32px, 5vh, 64px) var(--nav-space); }
+.eco-stick { top: var(--gap); height: calc(100svh - 2 * var(--gap)); }
+.lead { font-size: clamp(17px, 1.55vw, 20px); margin-top: 14px; }
+.intro-bar { margin-top: 16px; }
+.steps li { padding: 10px 0; }
+.hint.lone { margin-top: 16px; }
+.hint.lone + .cases { margin-top: 18px; }
+.fr-panel { margin-top: 14px; }
+.cases { margin-top: 24px; }
+.case { padding-block: 18px; }
+.case p { font-size: clamp(16px, 1.4vw, 18px); }
+.pull { margin-top: 24px; font-size: clamp(18px, 1.9vw, 24px); }
+.int-grid { margin-top: 24px; }
+.int-svg { width: 100%; height: auto; max-height: 46svh; }
+.int-step { padding: 12px 16px; }
+.int-step p { font-size: 16px; }
+.faq { margin-top: 20px; }
+@media (min-width: 1000px) {
+  .cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; border-bottom: 0; }
+  .case { grid-template-columns: 56px minmax(0, 1fr); align-items: start; }
+  .case p { grid-column: 2; }
+}
+@media (max-width: 820px) {
+  :root { --nav-space: 88px; }
+  .eco-stick { grid-template-rows: auto auto; }
+  .stage svg { max-height: 36svh; margin-inline: auto; }
+  .eco-hint { margin-top: 6px; }
+  .sec { padding-block: 40px calc(var(--nav-space) + 8px); }
+}
+
+/* Ajustes para cada tela caber no computador */
+.fr-tab { padding: 12px 16px; grid-template-columns: auto 1fr; align-items: center; gap: 12px; }
+.fr-tab .ti { width: 26px; height: 26px; }
+.fr-panel { padding: clamp(16px, 2vw, 28px); }
+.fr-vis svg { max-height: 30svh; }
+.int-svg { max-height: 36svh; }
+.int-step h3 { font-size: 17px; }
+.int-step p { font-size: 15px; }
+.int-steps { gap: 8px; }
+@media (min-width: 1000px) {
+  #integracao .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(32px, 5vw, 72px); align-items: end; }
+  #integracao .lead { margin-top: 0; max-width: none; }
+  #integracao .int-grid, #integracao .pull { grid-column: 1 / -1; }
+  .int-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+}
+@media (min-width: 821px) and (max-height: 820px) {
+  h2 { font-size: clamp(24px, 2.8vw, 34px); }
+  .sec h2::before { margin-bottom: 14px; }
+  .lead { font-size: 16.5px; }
+  .steps li { padding: 7px 0; font-size: 16.5px; }
+  .intro-lead { font-size: clamp(20px, 2.2vw, 28px); }
+  .case { padding-block: 12px; }
+  .case h3 { font-size: 20px; }
+  .pull { margin-top: 16px; font-size: 19px; }
+  .fr-vis svg { max-height: 26svh; }
+  .fr-body p { font-size: 16.5px; }
+  .int-svg { max-height: 32svh; }
+  .int-step { padding: 9px 14px; }
+}
+.fr-body h3 { margin: 10px 0 10px; }
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}.w>span{transform:none!important}.sw{opacity:1!important}</style></noscript>
 </head>
@@ -625,6 +693,7 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
   <a href="#eco" data-t="eco"><span>Ecossistema</span></a>
   <a href="#casos" data-t="casos"><span>Exemplo</span></a>
   <a href="#integracao" data-t="integracao"><span>Integração</span></a>
+  <a href="#simples" data-t="simples"><span>Em palavras simples</span></a>
   <a href="#pd" data-t="pd"><span>P&amp;D</span></a>
 </nav>
 
@@ -1067,8 +1136,12 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
         </li>
       </ol>
     </div>
+  </div>
+</section>
 
-    <h3 class="faq-t">Em palavras simples</h3>
+<section class="sec" id="simples">
+  <div class="wrap">
+    <h2 class="split">Em palavras simples</h2>
     <p class="hint lone">Clique em cada pergunta para abrir</p>
     <div class="faq">
       <details class="qa">
@@ -1175,6 +1248,7 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
     { id: 'eco', p: 0.86, label: 'Ecossistema' },
     { id: 'casos', label: 'Exemplo' },
     { id: 'integracao', label: 'Integração' },
+    { id: 'simples', label: 'Em palavras simples' },
     { id: 'pd', label: 'P&D' }
   ];
   var pbLabel = document.getElementById('pbLabel'), pbCount = document.getElementById('pbCount');
@@ -1184,7 +1258,7 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
     var el = document.getElementById(st.id);
     var top = el.getBoundingClientRect().top + window.scrollY;
     if (st.p != null) return top + st.p * (el.offsetHeight - vh());
-    return st.id === 'topo' ? 0 : top;
+    return st.id === 'topo' ? 0 : top - (parseFloat(getComputedStyle(el).marginBottom) || 0);
   }
   function curStop() {
     var ys = stops.map(stopY), y = window.scrollY + vh() * 0.3, cur = 0;
