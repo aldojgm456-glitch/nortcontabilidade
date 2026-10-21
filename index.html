@@ -600,8 +600,8 @@ html:not(.js) .okc { stroke-dashoffset: 0; }
   radial-gradient(60% 55% at 85% 20%, rgba(123, 108, 255, .22), transparent 70%),
   radial-gradient(45% 45% at 10% 95%, rgba(184, 255, 58, .10), transparent 70%),
   var(--bg); }
-.hero h1 { color: var(--ink); }
-.hero h1 .w:last-child > span { color: var(--accent); }
+.hero h1 { background: linear-gradient(100deg, #F4F5F8 55%, #B8FF3A 78%, #7B6CFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 .w > span { background: inherit; -webkit-background-clip: text; background-clip: text; }
 .sec h2::before { content: ""; display: block; width: 48px; height: 2px; background: var(--accent); margin-bottom: 22px; }
 .intro-head h2::before { display: none; }
 ::selection { background: var(--accent); color: var(--on-accent); }
