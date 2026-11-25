@@ -1,0 +1,82 @@
+name: Prospeccao Nort - atualizar bases
+
+on:
+  schedule:
+    - cron: "7 3 * * *"   # todo dia 00:07 (horario de Fortaleza)
+  workflow_dispatch:
+    inputs:
+      forcar:
+        description: "Gerar tudo de novo"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prospeccao
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+      NORT_SAIDA: /mnt/nort/saida
+      NORT_TRAB: /mnt/nort/trabalho
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: prospeccao
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Liberar espaco em disco
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          sudo mkdir -p /mnt/nort && sudo chown -R "$USER" /mnt/nort
+          mkdir -p "$NORT_SAIDA" "$NORT_TRAB"
+          df -h / /mnt
+
+      - name: O que ja foi processado
+        run: |
+          gh release list --limit 100 --json tagName -q '.[].tagName' > tags.txt || true
+          python3 - <<'PY'
+          import json, os
+          tags = open("tags.txt").read().split()
+          e = {}
+          n = sorted(t[6:] for t in tags if t.startswith("novas-"))
+          p = sorted(t[5:] for t in tags if t.startswith("pgfn-"))
+          if n: e["novas_ref"] = n[-1]
+          if p: e["pgfn_ref"] = p[-1]
+          json.dump(e, open(os.path.join(os.environ["NORT_SAIDA"], "_controle.json"), "w"))
+          print(e)
+          PY
+
+      - name: Rodar robo
+        run: |
+          ARGS=""
+          if [ "${{ inputs.forcar }}" = "true" ]; then ARGS="--forcar"; fi
+          python3 prospeccao/robo_cnpj_nort.py $ARGS
+
+      - name: Publicar bases (criptografadas)
+        run: |
+          cd "$NORT_SAIDA"
+          shopt -s nullglob
+          for d in base_*; do
+            tipo=$(echo "$d" | cut -d_ -f2)
+            ref=${d#base_${tipo}_}
+            tag="${tipo}-${ref}"
+            if gh release view "$tag" >/dev/null 2>&1; then echo "ja existe $tag"; continue; fi
+            rm -rf "$d/planilhas"
+            tar -czf "$tipo.tar.gz" -C "$d" .
+            openssl rand -out k.bin 32
+            openssl pkeyutl -encrypt -pubin -inkey "$GITHUB_WORKSPACE/prospeccao/chave_publica.pem" -pkeyopt rsa_padding_mode:oaep -in k.bin -out "$tipo.chave"
+            openssl enc -aes-256-cbc -pbkdf2 -salt -in "$tipo.tar.gz" -out "$tipo.dados" -pass file:k.bin
+            rm -f k.bin "$tipo.tar.gz"
+            ls -la "$tipo".*
+            gh release create "$tag" "$tipo.dados" "$tipo.chave" --title "$tag" --notes "Base gerada automaticamente." --repo "$GITHUB_REPOSITORY"
+          done
